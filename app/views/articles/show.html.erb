@@ -1,0 +1,113 @@
+<div class='background'>
+  <div class='text_background'>
+    <div style='font-size: 18px; margin-top: 15px; ' >
+      <%#<%= link_to '编辑', edit_article_path(@article), style: 'margin-left: 0px; text-decoration: none;' if session[:current_user].present?  %>
+      <%#<%= link_to '删除', @article, :method => :delete, style: 'margin-left: 910px; text-decoration: none;' if session[:current_user].present? %>
+      <% current_user = session[:current_user].present? ? User.find(session[:current_user]['id']) : nil %>
+      <%= link_to '编辑', edit_article_path(@article), style: 'margin-left: 0px; text-decoration: none;' if current_user != nil && current_user.admin? %>
+      <%= link_to '删除', @article, :method => :delete, style: 'margin-left: 910px; text-decoration: none;' if current_user != nil && current_user.admin?  %>
+    </div>
+    <div style= 'text-align: center;'>
+      <p></p>
+      <h3 class='text'>
+        <%= @article.title %>
+      </h3>
+      <p><%= @article.created_at.strftime("%Y-%m-%d %I:%M%p") %></p>
+    </div>
+    <div style='margin: 25px 20px 50px 20px;'>
+      <p><%= raw @article.content %></p>
+    </div>
+    <div>
+      <hr/>
+        附件：
+        <% if @article.attachment.present? %>
+          <%= link_to @article.attachment, @article.attachment, target: '_blank' %>
+       <% else %>
+          空
+       <% end %>
+      <hr/>
+    </div>
+    <div style='font-size: 19px;'>
+      <%= link_to '返回>>', articles_path, style: ' margin: 20px auto 20px auto; text-decoration: none; color: #6a3899;' %>
+    </div>
+  </div>
+
+  <div class='comment'>
+    <% if session[:current_comment_user].present? %>
+      欢迎您: <%= session[:current_comment_user]['username']%>
+      <%= link_to '退出', logout_comment_users_path(article_id: params[:id]), method: :delete, style: 'text-decoration: none; margin-left: 20px; color: #6a3899;' %></br>
+    <% end %>
+    <% if session[:current_comment_user].present? %>
+      <%= form_tag "/comments", method: 'post' do %>
+        <input type='hidden' name='comment_user_id' value='<%= params[:comment_user_id] %>' />
+        <input type='hidden' name='article_id' value='<%= params[:id] %>' />
+        <p>正文:
+        <%= text_field_tag "content" %>
+        <%= submit_tag "提交", style:' margin-left: 5px;' %>
+        </p>
+      <% end %>
+    <% else %>
+      <p>
+      <%= link_to '登录', new_comment_user_path(article_id: params[:id]) %>
+      </p>
+      <p style='color: #b54b4b;'>请登录后再发表评论。</p>
+    <% end %>
+
+    <p style='font-weight: bold;'>评论列表: </p>
+      <% if @comments.any? %>
+        <% @comments.each do |comment| %>
+          <p style='color: #9a9bab;'>姓名: <%= comment.comment_user.try(:username)%></p>
+          <p>评论正文: <%= comment.content %></p>
+        <% end %>
+      <% else %>
+        <p>目前还没有人发表评论</p>
+    <% end %>
+  </div>
+</div>
+
+<style>
+html, body{
+  background-image: url(<%= asset_path '6.jpg' %>);
+  height: 100%;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.background{
+  width: 1200px;
+  height: 100%;
+  background-attachment: fixed;
+  margin: 5px auto 5px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.text_background{
+  min-height: 875px;
+  min-width: 1000px;
+  overflow-y: auto;
+  margin-top: 25px;
+  background-color: white;
+  opacity: 0.8;
+  border-radius: 10px;
+  padding: 0px 30px 0px 30px
+}
+
+.text{
+  font-size: 22px;
+  padding: 0 50px 0 50px;
+}
+
+.comment{
+  min-width: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+  margin-top: 25px;
+  margin-left: 30px;
+  background-color: aliceblue;
+  opacity: 0.8;
+  padding: 10px 30px 10px 30px;
+  border-radius: 10px;
+}
+</style>

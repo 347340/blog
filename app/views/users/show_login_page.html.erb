@@ -1,0 +1,30 @@
+<div class='login_background'>
+  <div style='padding: 70px 30px 20px 100px'>
+    <p style='font-size: 18px; font-weight: bold;'>请登录</p>
+
+    <%= form_tag "/users/login", method: 'post'  do %>
+      用户名: <%= text_field_tag "login", "" %> <br/>
+      <p></p>
+      密码: <%= text_field_tag "password", "", style: 'margin-left: 15px;' %> <br/>
+      <p></p>
+      <%= submit_tag "提交" %>
+    <% end %>
+  </div>
+</div>
+<style>
+html, body{
+  background-image: url(<%= asset_path '6.jpg' %>);
+  height: 100%;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.login_background{
+  width: 600px;
+  height: 350px;
+  margin: 235px auto;
+  background: white;
+  opacity: 0.7;
+  border-radius: 10px;
+}
+</style>

@@ -1,0 +1,31 @@
+<div class='background'>
+  <div style= 'padding: 0px 30px 0 30px;'>
+    <h1>我的图片列表</h1>
+    <p>循环列出所有图片</p>
+
+    <% @images.each do |image| %>
+      <% if image.include?("png") || image.include?("jpg") %>
+        <img src="/images/<%= image %>", style='width: 700px;'><br/>
+        <p></p>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<style>
+html, body{
+  background-image: url(<%= asset_path '6.jpg' %>);
+  height: 100%;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.background{
+  width: 1000px;
+  height: 100%;
+  overflow-y: auto;
+  background-attachment: fixed;
+  margin: 5px auto 5px auto;
+  background-color: rgba(255,255,255,0.7);
+  border-radius: 10px;
+}
+</style>

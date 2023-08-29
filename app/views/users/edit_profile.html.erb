@@ -1,0 +1,28 @@
+<div class='background'>
+  <div style= 'padding: 30px 30px 0 30px;'>
+    <h1>编辑个人档案页面</h1>
+    <p>我的头像
+    <%= link_to '返回', show_profile_users_path, style: 'margin-left: 20px; text-decoration: none;'%>
+    </p>
+    <%= form_tag '/users/save_profile', multipart: true do %>
+      <%= file_field_tag "avatar_image" %>
+      <%= submit_tag "提交" %>
+    <% end %>
+  </div>
+</div>
+<style>
+html, body{
+  background-image: url(<%= asset_path '6.jpg' %>);
+  height: 100%;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.background{
+  width: 1000px;
+  height: 870px;
+  margin: 5px auto;
+  background-color: rgba(255,255,255,0.7);
+  border-radius: 10px;
+}
+</style>

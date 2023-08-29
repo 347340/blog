@@ -1,0 +1,33 @@
+<%= form_for @article, multiplepart: true do |form|%>
+
+  <div style='margin-top: 10px; margin-left: 150px;'>
+    <%= form.label :'是否置顶' %>
+    <%= form.check_box :is_top %>
+    <%= form.label :'是否隐藏' %>
+    <%= form.select :is_shown, options_for_select([['false', 0], ['true', 1]], params[:is_shown]) %>
+  </div>
+
+  <div style='margin: 5px auto 10px 150px;'>
+    <%= form.file_field :attachment %>
+  </div>
+
+  <div style='width:1500px; margin-left: 150px;'>
+    <%= form.text_field :title, style: 'width: 1493px; height: 30px; opacity: 0.7;' %>
+    <%= form.cktext_area :content, ckeditor: { height: 650}, size: "110x40", style: 'opacity: 0.7;' %>
+  </div>
+
+  <div>
+    <%= link_to '返回', articles_path, style: 'position: absolute; text-decoration: none; margin-left: 150px;' %>
+    <%= form.submit :'确定', style:'margin-left: 1610px;' %>
+  </div>
+<% end %>
+
+<style>
+html, body{
+  background-image: url(<%= asset_path '6.jpg' %>);
+  height: 100%;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+</style>

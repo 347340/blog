@@ -1,0 +1,29 @@
+<div class='background'>
+  <div style= 'padding: 30px 30px 0 30px;'>
+    <h1>个人档案</h1>
+    <%= link_to '我的图片列表', pictures_path , style: 'text-decoration: none;' %>
+    <p>我的头像
+    <%= link_to '编辑', 'edit_profile', style: 'margin-left: 20px; text-decoration: none;' %>
+    </p>
+    <%= @user.avatar_path %><br/>
+    <%# image_tag @user.avatar_path %>
+    <img src="<%= @user.avatar_path %>", style='width: 200px; height: 200px; margin-top: 20px;' />
+
+  </div>
+</div>
+<style>
+html, body{
+  background-image: url(<%= asset_path '6.jpg' %>);
+  height: 100%;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.background{
+  width: 1000px;
+  height: 870px;
+  margin: 5px auto;
+  background-color: rgba(255,255,255,0.7);
+  border-radius: 10px;
+}
+</style>

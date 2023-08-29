@@ -1,0 +1,69 @@
+<div class='background'>
+  <div class ='text_background'>
+    <h2 style='margin: 40px auto 25px 100px;'>
+      管理员查看普通用户评论的文章列表
+    </h2>
+    <div style='margin: auto auto 25px 100px;'>
+    <p>评论总数: <%= @total_count %></p>
+    <%= paginate @comments %>
+    </div>
+    <div style='margin-left: 100px;'>
+      <%= form_tag comments_path, method: :get do %>
+        用户名: <%= text_field_tag :username, params[:username]%>
+        <%= submit_tag "搜索" %>
+      <% end %>
+    </div>
+    <table style='margin: 35px auto 20px 100px;'>
+      <tr style='background-color: lightgray;'>
+        <td>评论时间:</td>
+        <td>评论用户:</td>
+        <td>评论文章:</td>
+        <td>评论内容:</td>
+      </tr>
+
+      <% @comments.each do |comment| %>
+        <tr>
+          <td><%= comment.created_at.strftime("%Y-%m-%d %I:%M%p")  %></td>
+          <td><%= comment.comment_user.try(:username) %></td>
+          <% if comment.article %>
+            <td><%= link_to comment.article.title, "/articles/#{comment.article_id}" %></td>
+          <% else %>
+            <td>文章已删除</td>
+          <% end %>
+          <td><%= comment.content %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+<style>
+html, body{
+  background-image: url(<%= asset_path '6.jpg' %>);
+  height: 100%;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.background{
+  width: 1200px;
+  margin: 0 auto;
+}
+.text_background{
+  min-height: 875px;
+  min-width: 1200px;
+  overflow-y: auto;
+  margin-top: 25px;
+  background-color: white;
+  opacity: 0.8;
+  border-radius: 10px;
+  padding: 0px 30px 0px 30px
+}
+
+table {
+  border-collapse: collapse;
+}
+table td,
+table th {
+  border: 1px black solid;
+  padding: 10px 30px;
+}
+</style>

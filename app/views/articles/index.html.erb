@@ -1,0 +1,96 @@
+<div class='big_background'>
+  <div class='head_image'>
+    <div class='image'>
+      <%= image_tag User.first.avatar_path, style: "width: 150px; border-radius: 50%;" %>
+      <p style=' margin-left: 35px;'>
+        <a href="https://blog.csdn.net/Toml_?type=blog" style='text-decoration: none;'>CSDN 地址</a><br/>
+      </p>
+      <p style=' margin-left: 33px;'>
+        <a href="https://github.com/347340" style='text-decoration: none;'>GitHub地址</a>
+      </p>
+    </div>
+  </div>
+  <div class='background'>
+    <div style='padding: 0px 30px 0px 30px'>
+      <h1>美亿的博客</h1>
+      <p>博客总数: <%= @total_count %></p>
+      <div style='color: #db46a1;'>
+        <%= paginate @articles %>
+      </div>
+      <div>
+        <%= form_tag articles_path, method: :get do %>
+          标题: <%= text_field_tag :title, params[:title]%>
+          内容: <%= text_field_tag :content, params[:content]%>
+          <%= submit_tag "搜索" %>
+        <% end %><br>
+      </div>
+
+      <div>
+        <% @top_articles.each do |article| %>
+          <a href="/articles/<%= article.id %>", style= 'text-decoration: none;'>
+            <div style='font-size: 20px; font-weight: bold;'>
+              <%= article.id %>
+              <%= article.title %>
+              <p></p>
+            </div>
+          </a>
+        <% end %>
+      </div>
+
+      <div>
+        <% @articles.each do |article| %>
+          <%# link_to article.created_at.strftime("%Y-%m-%d %I:%m%p"), article_path(article) %>
+          <%= link_to article.created_at.in_time_zone.strftime("%Y-%m-%d %H:%M%p"), article_path(article), target: "_blank", style: 'text-decoration: none;' %>
+          <%= link_to article.title, article_path(article), target: "_blank", style: 'margin-left: 10px; text-decoration: none;' %><br/>
+          <p></p>
+        <% end %>
+      </div>
+    </div>
+    <div class='bottom_paginate'>
+      <%= paginate @articles %>
+    </div>
+  </div>
+</div>
+
+<style>
+html, body{
+  background-image: url(<%= asset_path '6.jpg' %>);
+  height: 100%;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.big_background{
+  display: flex;
+  justify-content: space-between;
+  background-attachment: fixed;
+  height: 100%;
+}
+.background{
+  width: 1000px;
+  height: 100%;
+  overflow-y: auto;
+  margin: 5px auto 5px 0px;
+  background-color: white;
+  opacity: 0.7;
+  border-radius: 10px;
+}
+.head_image{
+  width: 250px;
+  height: 300px;
+  background-color: white;
+  border-radius: 10px;
+  margin: 5px 100px auto auto;
+  opacity: 0.9;
+}
+.image{
+  width: 150px;
+  margin: 30px auto;
+}
+.bottom_paginate{
+  margin: 5px auto 15px 30px;
+  color: #db46a1;
+  font-size: 18px;
+  font-weight: 500;
+}
+</style>

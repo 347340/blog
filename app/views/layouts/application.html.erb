@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%# javascript_include_tag Ckeditor.cdn_url %>
+  <script src="//cdn.ckeditor.com/4.19.0/full/ckeditor.js"></script>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class='top_menu'>
+  <!--<p>
+  <% if session[:current_user].present? %>
+
+    欢迎您: <%= session[:current_user]['login'] %><br/>
+  <% end %>
+  管理员是否登录: <%= session[:is_user_login] %>
+  </p>
+  -->
+
+  <% if session[:current_user].blank? %>
+    <%= link_to '登录', '/users/show_login_page',style: 'text-decoration: none; color: white;' %>
+  <% else %>
+    <%= link_to '退出', '/users/logout', method: :delete, style: 'text-decoration: none; color: white;' %>
+  <% end %>
+  <%= link_to '主页', articles_path, style: 'color: white; text-decoration: none; margin-left: 20px;' %>
+  <% if session[:current_user].present? %>
+    <%= link_to '新建', new_article_path, style: 'color: white; margin-left: 20px; text-decoration: none;' %>
+    <%= link_to '查看评论列表', comments_path, style: 'color: white; margin-left: 20px; text-decoration: none;' %>
+    <%= link_to '个人档案', show_profile_users_path, style: 'color: white; margin-left: 20px; text-decoration: none;' %>
+  <% end %>
+</div>
+
+<%= yield %>
+
+<style>
+.top_menu{
+  margin-left: 240px;
+  padding: 20px 0 20px 0;
+}
+</style>
+</body>
+</html>
