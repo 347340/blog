@@ -18,16 +18,18 @@
     <div style='margin: 25px 20px 50px 20px;'>
       <p><%= raw @article.content %></p>
     </div>
+    <!--
     <div>
       <hr/>
         附件：
-        <% if @article.attachment.present? %>
-          <%= link_to @article.attachment, @article.attachment, target: '_blank' %>
-       <% else %>
+        <%# if @article.attachment.present? %>
+          <%# link_to @article.attachment, @article.attachment, target: '_blank' %>
+       <%# else %>
           空
-       <% end %>
+       <%# end %>
       <hr/>
     </div>
+    -->
     <div style='font-size: 19px;'>
       <%= link_to '返回>>', articles_path, style: ' margin: 20px auto 20px auto; text-decoration: none; color: #6a3899;' %>
     </div>
