@@ -6,7 +6,7 @@
       <% current_user = session[:current_user].present? ? User.find(session[:current_user]['id']) : nil %>
       <%= link_to '编辑', edit_article_path(@article), style: 'margin-left: 0px; text-decoration: none;' if current_user != nil && current_user.admin? %>
       <%# link_to '删除', @article, :method => :delete, style: 'margin-left: 910px; text-decoration: none;' if current_user != nil && current_user.admin?  %>
-      <%= link_to '删除', @article, method: :delete, style: 'margin-left: 910px; text-decoration: none;', data: { confirm: '确定要删除吗?' } if current_user != nil && current_user.admin? %>
+      <%= link_to '删除', @article, method: :delete, style: 'margin-left: 900px; text-decoration: none;', data: { confirm: '确定删除吗?' } if current_user != nil && current_user.admin? %>
     </div>
     <div style= 'text-align: center;'>
       <p></p>
