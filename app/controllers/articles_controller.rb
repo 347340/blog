@@ -43,7 +43,8 @@ class ArticlesController < ApplicationController
 
       file_name = Rails.root.join('public', 'images', attachment_io.original_filename)
       File.open(file_name, 'wb') do |file|
-        file.write(attachment_io.read)
+        #file.write(attachment_io.read)
+        file.write(attachment_io.read.force_encoding('UTF-8'))
       end
       @article.attachment = '/images/' + attachment_io.original_filename
       @article.save

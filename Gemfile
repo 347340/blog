@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 
+
 gem 'delayed_job_active_record'
+
+gem 'rotp'
 gem 'cancancan', '2.2.0'
 gem 'httparty'
 gem 'nokogiri'

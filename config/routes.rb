@@ -21,4 +21,12 @@ Rails.application.routes.draw do
       delete :logout
     end
   end
+
+  namespace :interface do
+    resources :api, :only => [] do
+      collection do
+        get :all_article
+      end
+    end
+  end
 end

@@ -52,7 +52,7 @@ class UsersController < ApplicationController
         Rails.logger.info "=== '登录成功'"
         # 在管理登录之后发送一封通知邮件
         Rails.logger.info "==========-------- #{user.inspect}"
-        UserMailer.welcome_email(user).deliver_now!
+        #UserMailer.welcome_email(user).deliver_now!
         redirect_to '/articles' and return
       else
         Rails.logger.info "=== 用户名对，密码不对"
