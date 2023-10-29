@@ -121,6 +121,8 @@ GEM
       terrapin (~> 0.6.0)
     racc (1.7.1)
     rack (1.6.13)
+    rack-cors (1.0.6)
+      rack (>= 1.6.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.11.3)
@@ -216,6 +218,7 @@ DEPENDENCIES
   mysql2
   nokogiri
   paperclip
+  rack-cors
   rails (= 4.2.11.3)
   rotp
   sass-rails (= 5.0.7)

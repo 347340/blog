@@ -22,11 +22,7 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :interface do
-    resources :api, :only => [] do
-      collection do
-        get :all_article
-      end
-    end
+  namespace :api do
+    resources :articles, only: [:index, :show]
   end
 end

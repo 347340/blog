@@ -21,5 +21,3 @@ end
 (1..12).each do |page|
   get_single_page_urls page
 end
-
-

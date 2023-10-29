@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 gem 'delayed_job_active_record'
 
+gem 'rack-cors'
 gem 'rotp'
 gem 'cancancan', '2.2.0'
 gem 'httparty'
