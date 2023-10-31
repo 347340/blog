@@ -2,10 +2,10 @@ module Api
   class ArticlesController < ApplicationController
 
     def index
-      articles = Article.select(:id, :title, :created_at).order('created_at desc').page(params[:page] || 1).per(100)
+      articles = Article.select(:id, :title, :content, :created_at).order('created_at desc').page(params[:page] || 1).per(Article.count)
       count = articles.count rescue 0
 
-        render json: {articles:articles, count: count}
+      render json: {articles: articles, count: count}
     end
 
     def show
