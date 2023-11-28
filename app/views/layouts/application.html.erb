@@ -18,10 +18,9 @@
   管理员是否登录: <%= session[:is_user_login] %>
   </p>
   -->
-
-  <% if session[:current_user].blank? %>
-    <%= link_to '登录', '/users/show_login_page',style: 'text-decoration: none; color: white;' %>
-  <% else %>
+  <% if session[:current_user].blank? && request.host != "admin.meiyi.site:3000" && request.host_with_port != "meiyi.site:3000" %>
+    <%= link_to '登录', '/users/show_login_page', style: 'text-decoration: none; color: white;' %>
+  <% elsif !session[:current_user].blank? %>
     <%= link_to '退出', '/users/logout', method: :delete, style: 'text-decoration: none; color: white;' %>
   <% end %>
   <%= link_to '主页', articles_path, style: 'color: white; text-decoration: none; margin-left: 20px;' %>
