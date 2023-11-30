@@ -26,5 +26,6 @@ module Blog
     config.time_zone = 'Beijing'                    # 注释2
     config.active_record.raise_in_transactional_callbacks = true
     config.autoload_paths += %w(#{config.root}/app/models/ckeditor)
+    config.assets.enabled = true
   end
 end

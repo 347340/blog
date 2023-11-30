@@ -11,14 +11,14 @@
 <body>
 <div class='top_menu'>
   <!--<p>
-  <% if session[:current_user].present? %>
+  <%# if session[:current_user].present? %>
 
-    欢迎您: <%= session[:current_user]['login'] %><br/>
-  <% end %>
-  管理员是否登录: <%= session[:is_user_login] %>
+    欢迎您: <%# session[:current_user]['login'] %><br/>
+  <%# end %>
+  管理员是否登录: <%# session[:is_user_login] %>
   </p>
   -->
-  <% if session[:current_user].blank? && request.host != "admin.meiyi.site:3000" && request.host_with_port != "meiyi.site:3000" %>
+  <% if session[:current_user].blank? && request.host != "admin.meiyi.site" && request.host_with_port != "meiyi.site" && request.host_with_port != "meiyi.site:3000" %>
     <%= link_to '登录', '/users/show_login_page', style: 'text-decoration: none; color: white;' %>
   <% elsif !session[:current_user].blank? %>
     <%= link_to '退出', '/users/logout', method: :delete, style: 'text-decoration: none; color: white;' %>
