@@ -13,10 +13,11 @@ class CommentsController < ApplicationController
     comment.content = params[:content]
     comment.comment_user_id = session[:current_comment_user]['id']
     comment.save!
-   if comment.save
-      # 发送邮件通知任务成员
-      UserMailer.welcome_email(comment).deliver_now
-    end
+
+   #if comment.save
+   #   # 发送邮件通知任务成员
+   #   UserMailer.welcome_email(comment).deliver_now
+   # end
 
     #redirect_to :back
     redirect_to "/articles/#{params[:article_id]}"
